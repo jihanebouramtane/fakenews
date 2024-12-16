@@ -2,7 +2,7 @@
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 # More info on Python, GitHub Actions, and Azure App Service: https://aka.ms/python-webapps-actions
 
-name: Build and deploy Python app to Azure Web App - fakenewsapplication
+name: Build and deploy Python app to Azure Web App - fkneewsss
 
 on:
   push:
@@ -61,18 +61,25 @@ jobs:
       - name: Unzip artifact for deployment
         run: unzip release.zip
 
-      
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_F34356569DDD475C8C3AAC6135EE0139 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_953C4825CC374973901D236A06AD8C32 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_2C72D254819E442A966903A045420D23 }}
+          client-id: ${{ secrets.__clientidsecretname__ }}
+          tenant-id: ${{ secrets.__tenantidsecretname__ }}
+          subscription-id: ${{ secrets.__subscriptionidsecretname__ }}
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3
         id: deploy-to-webapp
         with:
-          app-name: 'fakenewsapplication'
+          app-name: 'fkneewsss'
           slot-name: 'Production'
+
+      - name: Set custom startup command
+        run: |
+          az webapp config set \
+            --name fkneewsss \
+            --resource-group NomDuGroupeDeRessources \
+            --startup-file "gunicorn --bind=0.0.0.0:5000 app:Fake_News_Det --timeout 600"
+
           
