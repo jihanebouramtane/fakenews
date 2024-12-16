@@ -1,0 +1,1 @@
+python Fake_News_Det.py
