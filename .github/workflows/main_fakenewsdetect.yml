@@ -2,7 +2,7 @@
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 # More info on Python, GitHub Actions, and Azure App Service: https://aka.ms/python-webapps-actions
 
-name: Build and deploy Python app to Azure Web App - fknews
+name: Build and deploy Python app to Azure Web App - fakenewsdetect
 
 on:
   push:
@@ -20,7 +20,7 @@ jobs:
       - name: Set up Python version
         uses: actions/setup-python@v5
         with:
-          python-version: '3.8'
+          python-version: '3.12'
 
       - name: Create and start virtual environment
         run: |
@@ -65,14 +65,14 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_B341C8BFC82840A4A038937A52E0E451 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_98C2591E3F5F4C84ACD0FECB47A7EAD5 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_19975CB34FBA454681EE662F1BD10E05 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_15B043EBC367412BAC0037628CA3B36B }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_0D6FFA96FA664E13874ED37858BD3637 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_4D41272B03DA4217B9DD506918C1BE94 }}
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3
         id: deploy-to-webapp
         with:
-          app-name: 'fknews'
+          app-name: 'fakenewsdetect'
           slot-name: 'Production'
           
